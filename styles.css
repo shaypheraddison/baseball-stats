@@ -4,8 +4,8 @@ body {
 }
 
 #stats-container {
-    background-color: whitesmoke;
-    border: 4px solid black;
+    background-color: rgba(245, 245, 245, 0.908);
+    border: 4px solid rgb(0, 0, 0);
     margin: 0 auto;
     width: 60%;
     height: 700px;

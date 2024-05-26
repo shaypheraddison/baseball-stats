@@ -37,39 +37,33 @@ const pitchingStatsArray = [
     "strikeout", "home-runs", "wins", "losses"
 ];
 
-// const batterBackground = "Resources/batter-box.webp";
-// const pitcherBackground = "Resources/pitching-mound.jped";
-// function changeBackground() {
-//     const choiceValue = playerChoice.textContent;
-
-//     if (choiceValue === "Batter") {
-//         document.body.style.backgroundImage = `url(${batterBackground})`;
-//     } else if (choiceValue === "Pitcher") {
-//         document.body.style.backgroundImage = `url(${pitcherBackground})`;
-//     };
-// };
-
-// changeBackground();
-
-
+const batterBackground = "Resources/batter-box.webp";
+const pitcherBackground = "Resources/mlb-mound.jpeg";
+const defaultBackground = "Resources/baseball.jpeg";
 
 function selectPlayer() {
+    const batterStats = document.getElementById("batter-stats");
+    const pitcherStats = document.getElementById("pitcher-stats");
+
     playerChoice.addEventListener("change", function(event) {
         const playerValue = event.target.value;
-        console.log(playerValue);
-        return playerValue;
-    })
-}
-selectPlayer();
+        if (playerValue=== "batter") {
+            batterStats.style.display = "inline";
+            pitcherStats.style.display = "none";
+            document.body.style.backgroundImage = `url(${batterBackground})`;
+        } else if (playerValue === "pitcher") {
+            pitcherStats.style.display = "inline";
+            batterStats.style.display = "none";
+            document.body.style.backgroundImage = `url(${pitcherBackground})`;
+        } else {
+            pitcherStats.style.display = "none";
+            batterStats.style.display = "none";
+            document.body.style.backgroundImage = `url(${defaultBackground})`;
+        };
+    });
+};
 
-function displayStatsBlock() {
-    selectPlayer();
-    if (selectPlayer=== "batter") {
-        const batterStats = document.getElementById("batter-stats");
-        document.batterStats.style.display = "block";
-    } else if (selectPlayer === "pitcher") {
-        const pitcherStats = document.getElementById("pitcher-stats");
-        document.pitcherStats.style.display = "block";
-    };
-}
-displayStatsBlock();
+
+
+
+selectPlayer();
