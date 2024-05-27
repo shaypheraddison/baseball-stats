@@ -24,7 +24,7 @@ h1 {
 }
 
 .input-data {
-    display: flex;
+    display: none;
     justify-content: center;
     padding: 10px;
 }
@@ -34,8 +34,9 @@ h1 {
     width: 20%;
 }
 
-#name::placeholder {
+.input-box {
     text-align: center;
+    padding: 4px;
 }
 
 #batter-stats, #pitcher-stats {

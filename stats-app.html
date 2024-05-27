@@ -17,31 +17,31 @@
             <option value="pitcher" id="pitcher">Pitcher</option>
         </select>
         <div class="input-data">
-            <input type="text" placeholder="Enter Player Name" id="name" required>
-            <button id="name-button">Submit</button>
+            <input type="text" class="input-box" placeholder="Enter Player Name" id="name" autocomplete="name" autocapitalize="words" required>
+            <button id="main-button">Submit</button>
         </div>
-        <div id="batter-stats">
-            <input type="text" placeholder="At-Bats" id="at-bats" required>
-            <input type="text" placeholder="Hits" id="hits" required>
-            <input type="text" placeholder="Walks" id="walks" required> 
-            <input type="text" placeholder="Hit-by-Pitches" id="hit-by-pitches" required> 
-            <input type="text" placeholder="Sacrifice Flies" id="sacrifice-flies" required> 
-            <input type="text" placeholder="Singles" id="singles" required> 
-            <input type="text" placeholder="Doubles" id="doubles" required>
-            <input type="text" placeholder="Triples" id="triples" required> 
-            <input type="text" placeholder="Home Runs" id="home-runs" required> 
+        <div id="batter-stats" class="input-data">
+            <input type="number" class="input-box" placeholder="At-Bats" id="at-bats" required>
+            <input type="number" class="input-box" placeholder="Hits" id="hits" required>
+            <input type="number" class="input-box" placeholder="Walks" id="walks" required> 
+            <input type="number" class="input-box" placeholder="Sacrifice Flies" id="sacrifice-flies" required> 
+            <input type="number" class="input-box" placeholder="Hit-by-Pitches" id="hit-by-pitches" required> 
+            <input type="number" class="input-box" placeholder="Singles" id="singles" required> 
+            <input type="number" class="input-box" placeholder="Doubles" id="doubles" required>
+            <input type="number" class="input-box" placeholder="Triples" id="triples" required> 
+            <input type="number" class="input-box" placeholder="Home Runs" id="home-runs" required> 
         </div>
-        <div id="pitcher-stats">
-            <input type="text" placeholder="Innings Pitched" id="innings-pitched" required>
-            <input type="text" placeholder="Runs Allowed" id="runs-allowed" required>
-            <input type="text" placeholder="Earned Runs" id="earned-runs" required>
-            <input type="text" placeholder="Hits Given Up" id="hits" required>
-            <input type="text" placeholder="Walks Issued" id="walks" required>
-            <input type="text" placeholder="Wild Pitches" id="wild-pitches" required>
-            <input type="text" placeholder="Strikeouts" id="strikeouts" required>
-            <input type="text" placeholder="Home Runs Allowed" id="home-runs-allowed" required>
-            <input type="text" placeholder="Wins" id="wins" required>
-            <input type="text" placeholder="Losses" id="losses" required>
+        <div id="pitcher-stats" class="input-data">
+            <input type="number" class="input-box" placeholder="Innings Pitched" id="innings-pitched" required>
+            <input type="number" class="input-box" placeholder="Runs Allowed" id="runs-allowed" required>
+            <input type="number" class="input-box" placeholder="Earned Runs" id="earned-runs" required>
+            <input type="number" class="input-box" placeholder="Hits Given Up" id="hits-given-up[]" required>
+            <input type="number" class="input-box" placeholder="Walks Issued" id="walks-issued" required>
+            <input type="number" class="input-box" placeholder="Wild Pitches" id="wild-pitches" required>
+            <input type="number" class="input-box" placeholder="Strikeouts" id="strikeouts" required>
+            <input type="number" class="input-box" placeholder="Home Runs Allowed" id="home-runs-allowed" required>
+            <input type="number" class="input-box" placeholder="Wins" id="wins" required>
+            <input type="number" class="input-box" placeholder="Losses" id="losses" required>
         </div>
 
 
