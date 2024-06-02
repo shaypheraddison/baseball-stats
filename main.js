@@ -6,6 +6,9 @@ const playerChoice = document.getElementById("player-choice");
 const mainButton = document.getElementById("main-button");
 const baseballStatsDisplay = document.getElementById("baseball-stats");
 const playerName = document.getElementById("player-name");
+const resultsBox = document.getElementById("results-box");
+const statsBox = document.getElementById("stats-go-here");
+const statHeader = document.getElementById("stat-header");
 
 const atBats = document.getElementById("at-bats");
 const hits = document.getElementById("hits");
@@ -69,10 +72,16 @@ function selectPlayer() {
     });
 };
 
+function formatStat(number) {
+    //This will remove the leading zero from any sub-1.xxx stat
+    return number.toString().replace(/^0\./, '.');
+};
+
 function calcBattingAverage(hitsStat, atBatsStat) {
     const average = parseFloat(hitsStat) / parseFloat(atBatsStat);
     const roundedAverage = average.toFixed(3);
-    return roundedAverage
+    const finalStatAvg = formatStat(roundedAverage);
+    return finalStatAvg
 };
 
 function calcOnBasePercentage(hitsStat, atBatsStat, walksStat, hitByPitchesStat, sacrificeFliesStat) {
@@ -80,14 +89,16 @@ function calcOnBasePercentage(hitsStat, atBatsStat, walksStat, hitByPitchesStat,
     const denominator = parseFloat(atBatsStat) + parseFloat(walksStat) + parseFloat(sacrificeFliesStat) + parseFloat(hitByPitchesStat);
     const onBase = onBaseNumerator / denominator;
     const roundedOnBase = onBase.toFixed(3);
-    return roundedOnBase;
+    const finalStatOpb = formatStat(roundedOnBase);
+    return finalStatOpb;
 };
 
 function calcSlugging(singlesStat, doublesStat, triplesStat, homeRunsStat, atBatsStat) {
     const numerator = (parseFloat(singlesStat) + (2 * parseFloat(doublesStat))+ (3 * parseFloat(triplesStat)) + (4 * parseFloat(homeRunsStat)));
     const slugging = numerator / parseFloat(atBatsStat);
     const roundedSlugging = slugging.toFixed(3);
-    return roundedSlugging
+    const finalStatSlg = formatStat(roundedSlugging);
+    return finalStatSlg
 };
 
 function calcOnBasePlusSlugging(hitsStat, atBatsStat, walksStat, hitByPitchesStat, sacrificeFliesStat, singlesStat, doublesStat, triplesStat, homeRunsStat) {
@@ -95,6 +106,7 @@ function calcOnBasePlusSlugging(hitsStat, atBatsStat, walksStat, hitByPitchesSta
     const sluggingStat = parseFloat(calcSlugging(singlesStat, doublesStat, triplesStat, homeRunsStat, atBatsStat));
     const opsStat = obpStat + sluggingStat;
     const roundedOPS = opsStat.toFixed(3);
+    const finalStatOps = formatStat(roundedOPS);
     return roundedOPS;
 };
 
@@ -113,14 +125,16 @@ function calcEarnedRunAvg(earnedRunsStat, inningsPitchedStat) {
     const earnedRunAvgNumerator = parseFloat(earnedRunsStat) * 9;
     const earnedRunAvg = earnedRunAvgNumerator / parseFloat(inningsPitchedStat);
     const roundedERA = earnedRunAvg.toFixed(2);
-    return roundedERA;
+    const finalStatEra = formatStat(roundedERA);
+    return finalStatEra;
 };
 
 function calcWalksHitsInningPitched(walksIssuedStat, inningsPitchedStat, hitsGivenUpStat) {
     const whipNumberator = parseFloat(walksIssuedStat) + parseFloat(hitsGivenUpStat);
     const walksHitsInningsPitched = whipNumberator / parseFloat(inningsPitchedStat);
     const roundedWHIP = walksHitsInningsPitched.toFixed(2);
-    return roundedWHIP;
+    const finalStatWhip = formatStat(roundedWHIP);
+    return finalStatWhip;
 };
 
 function calcPer9Stats(strikeoutsStat, walksIssuedStat, hitsGivenUpStat, homeRunsAllowedStat,  inningsPitchedStat) {
@@ -129,20 +143,24 @@ function calcPer9Stats(strikeoutsStat, walksIssuedStat, hitsGivenUpStat, homeRun
     const strikeoutPer9Numerator = parseFloat(strikeoutsStat) * 9;
     const strikeoutEquation = strikeoutPer9Numerator / innings;
     const roundedKPer9 = strikeoutEquation.toFixed(2);
+    const finalStatK = formatStat(roundedKPer9);
 
     const walksPer9Numerator = parseFloat(walksIssuedStat) * 9;
     const walksEquation = walksPer9Numerator / innings;
     const roundedBBPer9 = walksEquation.toFixed(2);
+    const finalStatBb = formatStat(roundedBBPer9);
 
     const hitsPer9Numerator = parseFloat(hitsGivenUpStat) * 9;
     const hitsEquation = hitsPer9Numerator / innings;
     const roundedHitsPer9 = hitsEquation.toFixed(2);
+    const finalStatHits = formatStat(roundedHitsPer9);
 
     const homeRunsPer9Numerator = parseFloat(homeRunsAllowedStat) * 9;
     const homeRunsEquation = homeRunsPer9Numerator / innings;
     const roundedHomeRunsPer9 = homeRunsEquation.toFixed(2);
+    const finalStatHr = formatStat(roundedHomeRunsPer9);
 
-    return {roundedKPer9, roundedBBPer9, roundedHitsPer9, roundedHomeRunsPer9}
+    return {finalStatK, finalStatBb, finalStatHits, finalStatHr}
 };
 
 function pitchingMath() {
@@ -159,23 +177,64 @@ function pitchingMath() {
         BB: ${walksIssued.value},
         HA: ${hitsGivenUp.value},
         HRA: ${homeRunsAllowed.value},
-        H/9: ${statsPer9Math.roundedHitsPer9},
-        BB/9: ${statsPer9Math.roundedBBPer9},
-        HR/9: ${statsPer9Math.roundedHomeRunsPer9},
-        K/9: ${statsPer9Math.roundedKPer9}
+        H/9: ${statsPer9Math.finalStatHits},
+        BB/9: ${statsPer9Math.finalStatBb},
+        HR/9: ${statsPer9Math.finalStatHr},
+        K/9: ${statsPer9Math.finalStatK}
         `);
     return { earnedRunsMath, walksHitsMath, statsPer9Math }
+};
+
+function displayStats() {
+    let player = "";
+    const playerNameValue = playerName.value;
+
+    playerChoice.addEventListener("change", function(event) {
+        player = event.target.value;
+        console.log(player);
+    });
+
+    mainButton.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        if (player === "batter") {
+            statHeader.style.display = "inline";
+            const hittingStats = hittingMath();
+            console.log(
+                hittingStats.battingAverage, 
+                hittingStats.onBasePercentage,
+                hittingStats.slugging,
+                hittingStats.onBasePlusSlugging
+            );
+            statsBox.append(`
+                ${playerNameValue}
+                Stat Line: 
+                ${hittingStats.battingAverage}/
+                ${hittingStats.onBasePercentage}/
+                ${hittingStats.slugging}/
+                ${hittingStats.onBasePlusSlugging}
+            `);
+        } else if (player === "pitcher") {
+            statHeader.style.display = "inline";
+            const pitchingStats = pitchingMath();
+            statsBox.append(`
+                Stat Line:
+                ${pitchingStats.earnedRunsMath},
+                ${pitchingStats.statsPer9Math.finalStatBb},
+                ${pitchingStats.statsPer9Math.finalStatHits},
+                ${pitchingStats.statsPer9Math.finalStatHr},
+                ${pitchingStats.statsPer9Math.finalStatK},
+                ${pitchingStats.walksHitsMath}
+            `);
+        };
+    });
 };
 
 
 
 function main() {
     selectPlayer();
-    mainButton.addEventListener("click", function(event) {
-        // event.preventDefault();
-        hittingMath();
-        pitchingMath();
-    });
+    displayStats();
 };
 
 main();

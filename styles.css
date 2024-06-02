@@ -42,3 +42,17 @@ h1 {
 #batter-stats, #pitcher-stats {
     display: none;
 }
+
+#results-box { 
+    display: grid;
+    justify-content: center;
+    text-wrap: wrap;
+}
+
+#stat-header {
+    display: none;
+    justify-content: center;
+    text-align: center;
+}
+
+
