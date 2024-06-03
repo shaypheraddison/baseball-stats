@@ -180,24 +180,21 @@ function clearResults() {
     inputElements.miscStats.innerText = "";
 };
 
-
 function displayStats() {
     let player = "";
 
     playerElements.playerChoice.addEventListener("change", function(event) {
         player = event.target.value;
-        console.log(player);
         if (player === "") {
             clearResults();
-        } else if (player === "batter") {
-            clearResults();
-        } else if (player === "pitcher") {
+        } else {
             clearResults();
         };
     });
 
-    inputElements.mainButton.addEventListener("click", function(event) {
+    inputElements.mainForm.addEventListener("submit", function(event) {
         event.preventDefault();
+
         const playerNameValue = playerElements.playerName.value;
 
         if (player === "batter") {
