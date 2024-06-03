@@ -1,84 +1,83 @@
 // need to contact baseball stats api to display MLB players' stats
 // need to take custom input stats that will calculate a slash line and display it out
 
-const inputData = document.getElementById("stat-input");
-const playerChoice = document.getElementById("player-choice");
-const mainButton = document.getElementById("main-button");
-const baseballStatsDisplay = document.getElementById("baseball-stats");
-const playerName = document.getElementById("player-name");
-const resultsBox = document.getElementById("results-box");
-const statsBox = document.getElementById("stats-go-here");
-const statHeader = document.getElementById("stat-header");
-const statLabels = document.getElementById("hitting-labels");
-const miscStatLabels = document.getElementById("misc-stat-labels");
-const miscStats = document.getElementById("misc-stats");
+const battingElements = {
+    atBats: document.getElementById("at-bats"),
+    hits: document.getElementById("hits"),
+    walks: document.getElementById("walks"),
+    sacrificeFlies: document.getElementById("sacrifice-flies"),
+    hitByPitches: document.getElementById("hit-by-pitches"),
+    singles: document.getElementById("singles"),
+    doubles: document.getElementById("doubles"),
+    triples: document.getElementById("triples"),
+    homeRuns: document.getElementById("home-runs"),
+    runsBattedIn: document.getElementById("runs-batted-in"),
+    runsScored: document.getElementById("runs-scored")
+};
 
-const atBats = document.getElementById("at-bats");
-const hits = document.getElementById("hits");
-const walks = document.getElementById("walks");
-const sacrificeFlies = document.getElementById("sacrifice-flies");
-const hitByPitches = document.getElementById("hit-by-pitches");
-const singles = document.getElementById("singles");
-const doubles = document.getElementById("doubles");
-const triples = document.getElementById("triples");
-const homeRuns = document.getElementById("home-runs");
-const runsBattedIn = document.getElementById("runs-batted-in");
-const runsScored = document.getElementById("runs-scored");
+const pitchingElements = {
+    inningsPitched: document.getElementById("innings-pitched"),
+    runsAllowed: document.getElementById("runs-allowed"),
+    earnedRuns: document.getElementById("earned-runs"),
+    hitsGivenUp: document.getElementById("hits-given-up"),
+    walksIssued: document.getElementById("walks-issued"),
+    wildPitches: document.getElementById("wild-pitches"),
+    strikeouts: document.getElementById("strikeouts"),
+    homeRunsAllowed: document.getElementById("home-runs-allowed"),
+    wins: document.getElementById("wins"),
+    losses: document.getElementById("losses")
+};
 
-const inningsPitched = document.getElementById("innings-pitched");
-const runsAllowed = document.getElementById("runs-allowed");
-const earnedRuns = document.getElementById("earned-runs");
-const hitsGivenUp = document.getElementById("hits-given-up");
-const walksIssued = document.getElementById("walks-issued");
-const wildPitches = document.getElementById("wild-pitches");
-const strikeouts = document.getElementById("strikeouts");
-const homeRunsAllowed = document.getElementById("home-runs-allowed");
-const wins = document.getElementById("wins");
-const losses = document.getElementById("losses");
+const playerElements = {
+    playerChoice: document.getElementById("player-choice"),
+    playerName: document.getElementById("player-name"),
+    batterStats: document.getElementById("batter-stats"),
+    pitcherStats: document.getElementById("pitcher-stats")
+};
 
-const batterBackground = "Resources/batter-box.webp";
+const inputElements = {
+    inputData: document.getElementById("stat-input"),
+    mainButton: document.getElementById("main-button"),
+    baseballStatsDisplay: document.getElementById("baseball-stats"),
+    resultsBox: document.getElementById("results-box"),
+    statsBox: document.getElementById("stats-go-here"),
+    statHeader: document.getElementById("stat-header"),
+    statLabels: document.getElementById("stat-labels"),
+    miscStatLabels: document.getElementById("misc-stat-labels"),
+    miscStats: document.getElementById("misc-stats"),
+    nameContainer: document.querySelector(".input-data"),
+    mainForm: document.getElementById("main-form")
+};
+
+const batterBackground = "Resources/HomePlate3x3.jpg";
 const pitcherBackground = "Resources/mlb-mound.jpeg";
 const defaultBackground = "Resources/baseball.jpeg";
 
-const hittingStatsArray = [
-    "at-bats", "hits", "singles", "doubles", "triples", "home-runs",
-    "walks", "hit-by-pitch","sacrifice fly"
-];
-
-const pitchingStatsArray = [
-    "innings pitched", "runs allowed", "earned runs", "hits", "walks", "wild pitches",
-    "strikeout", "home-runs", "wins", "losses"
-];
-
-
 function selectPlayer() {
-    const batterStats = document.getElementById("batter-stats");
-    const pitcherStats = document.getElementById("pitcher-stats");
-    const nameContainer = document.querySelector(".input-data");
 
-    playerChoice.addEventListener("change", function(event) {
+    playerElements.playerChoice.addEventListener("change", function(event) {
         const playerValue = event.target.value;
         if (playerValue=== "batter") {
-            batterStats.style.display = "inline-flex";
-            pitcherStats.style.display = "none";
-            nameContainer.style.display = "flex";
+            playerElements.batterStats.style.display = "inline-flex";
+            playerElements.pitcherStats.style.display = "none";
+            inputElements.nameContainer.style.display = "flex";
             document.body.style.backgroundImage = `url(${batterBackground})`;
         } else if (playerValue === "pitcher") {
-            pitcherStats.style.display = "inline-flex";
-            batterStats.style.display = "none";
-            nameContainer.style.display = "flex";
+            playerElements.pitcherStats.style.display = "inline-flex";
+            playerElements.batterStats.style.display = "none";
+            inputElements.nameContainer.style.display = "flex";
             document.body.style.backgroundImage = `url(${pitcherBackground})`;
         } else {
-            pitcherStats.style.display = "none";
-            batterStats.style.display = "none";
-            nameContainer.style.display = "none";
+            playerElements.pitcherStats.style.display = "none";
+            playerElements.batterStats.style.display = "none";
+            inputElements.nameContainer.style.display = "none";
             document.body.style.backgroundImage = `url(${defaultBackground})`;
         }
     });
 };
 
 function formatStat(number) {
-    //This will remove the leading zero from any sub-1.xxx stat
+    //This will remove the leading zero from any 0.xxx or 1.xxx stat
     return number.toString().replace(/^0\./, '.');
 };
 
@@ -117,12 +116,10 @@ function calcOnBasePlusSlugging(hitsStat, atBatsStat, walksStat, hitByPitchesSta
 
 
 function hittingMath() {
-    const battingAverage = calcBattingAverage(hits.value, atBats.value);
-    const onBasePercentage = calcOnBasePercentage(hits.value, atBats.value, walks.value, sacrificeFlies.value, hitByPitches.value);
-    const slugging = calcSlugging(singles.value, doubles.value, triples.value, homeRuns.value, atBats.value);
-    const onBasePlusSlugging = calcOnBasePlusSlugging(hits.value, atBats.value, walks.value, sacrificeFlies.value, hitByPitches.value, singles.value, doubles.value, triples.value, homeRuns.value);
-    // showing final slash line on console
-    console.log(`Slash Line is: ${battingAverage}/${onBasePercentage}/${slugging}/${onBasePlusSlugging}`);
+    const battingAverage = calcBattingAverage(battingElements.hits.value, battingElements.atBats.value);
+    const onBasePercentage = calcOnBasePercentage(battingElements.hits.value, battingElements.atBats.value, battingElements.walks.value, battingElements.sacrificeFlies.value, battingElements.hitByPitches.value);
+    const slugging = calcSlugging(battingElements.singles.value, battingElements.doubles.value, battingElements.triples.value, battingElements.homeRuns.value, battingElements.atBats.value);
+    const onBasePlusSlugging = calcOnBasePlusSlugging(battingElements.hits.value, battingElements.atBats.value, battingElements.walks.value, battingElements.sacrificeFlies.value, battingElements.hitByPitches.value, battingElements.singles.value, battingElements.doubles.value, battingElements.triples.value, battingElements.homeRuns.value);
     return { battingAverage, onBasePercentage, slugging, onBasePlusSlugging }
 };
 
@@ -137,7 +134,7 @@ function calcEarnedRunAvg(earnedRunsStat, inningsPitchedStat) {
 function calcWalksHitsInningPitched(walksIssuedStat, inningsPitchedStat, hitsGivenUpStat) {
     const whipNumberator = parseFloat(walksIssuedStat) + parseFloat(hitsGivenUpStat);
     const walksHitsInningsPitched = whipNumberator / parseFloat(inningsPitchedStat);
-    const roundedWHIP = walksHitsInningsPitched.toFixed(2);
+    const roundedWHIP = walksHitsInningsPitched.toFixed(3);
     const finalStatWhip = formatStat(roundedWHIP);
     return finalStatWhip;
 };
@@ -147,61 +144,47 @@ function calcPer9Stats(strikeoutsStat, walksIssuedStat, hitsGivenUpStat, homeRun
 
     const strikeoutPer9Numerator = parseFloat(strikeoutsStat) * 9;
     const strikeoutEquation = strikeoutPer9Numerator / innings;
-    const roundedKPer9 = strikeoutEquation.toFixed(2);
+    const roundedKPer9 = strikeoutEquation.toFixed(3);
     const finalStatK = formatStat(roundedKPer9);
 
     const walksPer9Numerator = parseFloat(walksIssuedStat) * 9;
     const walksEquation = walksPer9Numerator / innings;
-    const roundedBBPer9 = walksEquation.toFixed(2);
+    const roundedBBPer9 = walksEquation.toFixed(3);
     const finalStatBb = formatStat(roundedBBPer9);
 
     const hitsPer9Numerator = parseFloat(hitsGivenUpStat) * 9;
     const hitsEquation = hitsPer9Numerator / innings;
-    const roundedHitsPer9 = hitsEquation.toFixed(2);
+    const roundedHitsPer9 = hitsEquation.toFixed(3);
     const finalStatHits = formatStat(roundedHitsPer9);
 
     const homeRunsPer9Numerator = parseFloat(homeRunsAllowedStat) * 9;
     const homeRunsEquation = homeRunsPer9Numerator / innings;
-    const roundedHomeRunsPer9 = homeRunsEquation.toFixed(2);
+    const roundedHomeRunsPer9 = homeRunsEquation.toFixed(3);
     const finalStatHr = formatStat(roundedHomeRunsPer9);
 
     return {finalStatK, finalStatBb, finalStatHits, finalStatHr}
 };
 
 function pitchingMath() {
-    const earnedRunsMath = calcEarnedRunAvg(earnedRuns.value, inningsPitched.value);
-    const walksHitsMath = calcWalksHitsInningPitched(walksIssued.value, inningsPitched.value, hitsGivenUp.value);
-    const statsPer9Math = calcPer9Stats(strikeouts.value, walksIssued.value, hitsGivenUp.value, homeRunsAllowed.value, inningsPitched.value);
-    console.log(`
-        Pitching Line is: 
-        IP: ${inningsPitched.value},
-        RA: ${runsAllowed.value},
-        ERA: ${earnedRunsMath}, 
-        WHIP: ${walksHitsMath}, 
-        SO: ${strikeouts.value}, 
-        BB: ${walksIssued.value},
-        HA: ${hitsGivenUp.value},
-        HRA: ${homeRunsAllowed.value},
-        H/9: ${statsPer9Math.finalStatHits},
-        BB/9: ${statsPer9Math.finalStatBb},
-        HR/9: ${statsPer9Math.finalStatHr},
-        K/9: ${statsPer9Math.finalStatK}
-        `);
+    const earnedRunsMath = calcEarnedRunAvg(pitchingElements.earnedRuns.value, pitchingElements.inningsPitched.value);
+    const walksHitsMath = calcWalksHitsInningPitched(pitchingElements.walksIssued.value, pitchingElements.inningsPitched.value, pitchingElements.hitsGivenUp.value);
+    const statsPer9Math = calcPer9Stats(pitchingElements.strikeouts.value, pitchingElements.walksIssued.value, pitchingElements.hitsGivenUp.value, pitchingElements.homeRunsAllowed.value, pitchingElements.inningsPitched.value);
     return { earnedRunsMath, walksHitsMath, statsPer9Math }
 };
 
 function clearResults() {
-    statsBox.innerText = "";
-    statHeader.innerText = "";
-    statLabels.innerText = "";
-    miscStatLabels.innerText = "";
-    miscStats.innerText = "";
-}
+    inputElements.statsBox.innerText = "";
+    inputElements.statHeader.innerText = "";
+    inputElements.statLabels.innerText = "";
+    inputElements.miscStatLabels.innerText = "";
+    inputElements.miscStats.innerText = "";
+};
+
 
 function displayStats() {
     let player = "";
 
-    playerChoice.addEventListener("change", function(event) {
+    playerElements.playerChoice.addEventListener("change", function(event) {
         player = event.target.value;
         console.log(player);
         if (player === "") {
@@ -213,31 +196,37 @@ function displayStats() {
         };
     });
 
-    mainButton.addEventListener("click", function(event) {
+    inputElements.mainButton.addEventListener("click", function(event) {
         event.preventDefault();
-
-        const playerNameValue = playerName.value;
-        console.log(playerNameValue);
+        const playerNameValue = playerElements.playerName.value;
 
         if (player === "batter") {
             const hittingStats = hittingMath();
 
-            statHeader.style.display = "inline";
-            statHeader.innerText = `${playerNameValue}'s Stat Line`;
+            // display's player name
+            inputElements.statHeader.style.display = "inline";
+            inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
 
-            // statsBox.style.display = "inline";
-            hittingLabels.innerText = "AVG  /  OBP  /  SLG  /  OPS"
-            statsBox.innerText = `${hittingStats.battingAverage}  /  ${hittingStats.onBasePercentage}  /  ${hittingStats.slugging}  /  ${hittingStats.onBasePlusSlugging}`;
-            miscStatLabels.innerText = "AB  |  Hits  |  HR  |  R |  RBI";
-            miscStats.innerText = `${atBats.value}  |  ${hits.value}  |  ${homeRuns.value}  |  ${runsScored.value}  |  ${runsBattedIn.value}`;
+            // display's hitting stat line and the labels
+            inputElements.statLabels.innerText = "AVG  /  OBP  /  SLG  /  OPS  "
+            inputElements.statsBox.innerText = `${hittingStats.battingAverage}  /  ${hittingStats.onBasePercentage}  /  ${hittingStats.slugging}  /  ${hittingStats.onBasePlusSlugging}`;
+            // display's other hitting stats and their labels
+            inputElements.miscStatLabels.innerText = "AB  |  Hits  |  HR  |  R |  RBI  ";
+            inputElements.miscStats.innerText = `${battingElements.atBats.value}  |  ${battingElements.hits.value}  |  ${battingElements.homeRuns.value}  |  ${battingElements.runsScored.value}  |  ${battingElements.runsBattedIn.value}`;
 
         } else if (player === "pitcher") {
             const pitchingStats = pitchingMath();
 
-            statHeader.style.display = "inline";
-            statHeader.innerText = `${playerNameValue}'s Stat Line`;
-
-            statsBox.innerText = `${pitchingStats.earnedRunsMath},${pitchingStats.statsPer9Math.finalStatBb},${pitchingStats.statsPer9Math.finalStatHits},${pitchingStats.statsPer9Math.finalStatHr},${pitchingStats.statsPer9Math.finalStatK},${pitchingStats.walksHitsMath}`;
+            //display's player name
+            inputElements.statHeader.style.display = "inline";
+            inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
+            
+            //display's pitching stat line and the labels
+            inputElements.statLabels.innerText = "W  |  L  |  ERA  |  IP  |  H  |  RA  |  ER  |  HR  |  BB  |  SO  ";
+            inputElements.statsBox.innerText = `${pitchingElements.wins.value}  |  ${pitchingElements.losses.value}  |  ${pitchingStats.earnedRunsMath}  |  ${pitchingElements.inningsPitched.value}  |  ${pitchingElements.hitsGivenUp.value}  |  ${pitchingElements.runsAllowed.value}  |  ${pitchingElements.earnedRuns.value}  |  ${pitchingElements.homeRunsAllowed.value}  |  ${pitchingElements.walksIssued.value}  |  ${pitchingElements.strikeouts.value}  `;
+            //display's other pitching stats and the labels
+            inputElements.miscStatLabels.innerText = "WHIP  |  H/9  |  HR/9  |  BB/9  |  SO/9  ";
+            inputElements.miscStats.innerText = `${pitchingStats.walksHitsMath}  |  ${pitchingStats.statsPer9Math.finalStatHits}  |  ${pitchingStats.statsPer9Math.finalStatHr}  |  ${pitchingStats.statsPer9Math.finalStatBb}  |  ${pitchingStats.statsPer9Math.finalStatK}  `;
         };
     });
 };
