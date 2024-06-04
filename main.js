@@ -62,11 +62,38 @@ function selectPlayer() {
             playerElements.pitcherStats.style.display = "none";
             inputElements.nameContainer.style.display = "flex";
             document.body.style.backgroundImage = `url(${batterBackground})`;
+
+            for (let element in battingElements) {
+                if (battingElements[element]) {
+                    battingElements[element].setAttribute("required", "true");
+                };
+            };
+
+            for (let element in pitchingElements) {
+                console.log(element)
+                if (pitchingElements[element]) {
+                    pitchingElements[element].removeattribute = "required";
+                };
+            };
+
         } else if (playerValue === "pitcher") {
             playerElements.pitcherStats.style.display = "inline-flex";
             playerElements.batterStats.style.display = "none";
             inputElements.nameContainer.style.display = "flex";
             document.body.style.backgroundImage = `url(${pitcherBackground})`;
+
+            for (let element in pitchingElements) {
+                if (pitchingElements[element]) {
+                    pitchingElements[element].setAttribute("required", "true");
+                };
+            };
+
+            for (let element in battingElements) {
+                if (battingElements[element]) {
+                    battingElements[element].removeattribute = "required";
+                };
+            };
+
         } else {
             playerElements.pitcherStats.style.display = "none";
             playerElements.batterStats.style.display = "none";
@@ -179,7 +206,7 @@ function clearResults() {
     inputElements.miscStatLabels.innerText = "";
     inputElements.miscStats.innerText = "";
 };
-
+   
 function displayStats() {
     let player = "";
 
@@ -205,7 +232,7 @@ function displayStats() {
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
 
             // display's hitting stat line and the labels
-            inputElements.statLabels.innerText = "AVG  /  OBP  /  SLG  /  OPS  "
+            inputElements.statLabels.innerText = "AVG  |  OBP  |  SLG  |  OPS  "
             inputElements.statsBox.innerText = `${hittingStats.battingAverage}  /  ${hittingStats.onBasePercentage}  /  ${hittingStats.slugging}  /  ${hittingStats.onBasePlusSlugging}`;
             // display's other hitting stats and their labels
             inputElements.miscStatLabels.innerText = "AB  |  Hits  |  HR  |  R |  RBI  ";

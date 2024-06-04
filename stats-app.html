@@ -17,33 +17,35 @@
             <option value="pitcher" id="pitcher">Pitcher</option>
         </select>
         <form id="main-form" class="input-data" required>
-            <input type="text" class="input-box" placeholder="Player Name" id="player-name" autocomplete="name" autocapitalize="words" required />
-            <button id="main-button">Submit</button>
-        </form>
-        <form id="batter-stats" class="input-data" required>
-            <input type="number" class="input-box" placeholder="At-Bats" id="at-bats" min="0" required />
-            <input type="number" class="input-box" placeholder="Hits" id="hits" min="0" required />
-            <input type="number" class="input-box" placeholder="Walks" id="walks" min="0" required /> 
-            <input type="number" class="input-box" placeholder="Sacrifice Flies" min="0" id="sacrifice-flies" required /> 
-            <input type="number" class="input-box" placeholder="Hit-by-Pitches" min="0" id="hit-by-pitches" required /> 
-            <input type="number" class="input-box" placeholder="Singles" id="singles" min="0" required /> 
-            <input type="number" class="input-box" placeholder="Doubles" id="doubles" min="0" required />
-            <input type="number" class="input-box" placeholder="Triples" id="triples" min="0" required /> 
-            <input type="number" class="input-box" placeholder="Home Runs" id="home-runs" min="0" required /> 
-            <input type="number" class="input-box" placeholder="Runs Batted In" id="runs-batted-in" min="0" required /> 
-            <input type="number" class="input-box" placeholder="Runs Scored" id="runs-scored" min="0" required /> 
-        </form>
-        <form id="pitcher-stats" class="input-data" required>
-            <input type="number" class="input-box" placeholder="Innings Pitched" id="innings-pitched" min="0" required />
-            <input type="number" class="input-box" placeholder="Runs Allowed" id="runs-allowed" min="0" required />
-            <input type="number" class="input-box" placeholder="Earned Runs" id="earned-runs" min="0" required />
-            <input type="number" class="input-box" placeholder="Hits Given Up" id="hits-given-up" min="0" required />
-            <input type="number" class="input-box" placeholder="Walks Issued" id="walks-issued" min="0" required />
-            <input type="number" class="input-box" placeholder="Wild Pitches" id="wild-pitches" min="0" required />
-            <input type="number" class="input-box" placeholder="Strikeouts" id="strikeouts" min="0" required />
-            <input type="number" class="input-box" placeholder="Home Runs Allowed" id="home-runs-allowed" min="0" required />
-            <input type="number" class="input-box" placeholder="Wins" id="wins" min="0" required />
-            <input type="number" class="input-box" placeholder="Losses" id="losses" min="0" required />
+            <div id="name-section"> 
+                <input type="text" class="submit" placeholder="Player Name" id="player-name" autocomplete="name" autocapitalize="words" required />
+                <input type="submit" class="submit" id="main-button" value="Submit">
+            </div>
+            <div id="batter-stats" class="input-data" required>
+                <input type="number" class="batter-stats" placeholder="At-Bats" id="at-bats" min="0"  />
+                <input type="number" class="batter-stats" placeholder="Hits" id="hits" min="0"  />
+                <input type="number" class="batter-stats" placeholder="Walks" id="walks" min="0"  /> 
+                <input type="number" class="batter-stats" placeholder="Sacrifice Flies" min="0" id="sacrifice-flies"  /> 
+                <input type="number" class="batter-stats" placeholder="Hit-by-Pitches" min="0" id="hit-by-pitches"  /> 
+                <input type="number" class="batter-stats" placeholder="Singles" id="singles" min="0"  /> 
+                <input type="number" class="batter-stats" placeholder="Doubles" id="doubles" min="0"  />
+                <input type="number" class="batter-stats" placeholder="Triples" id="triples" min="0"  /> 
+                <input type="number" class="batter-stats" placeholder="Home Runs" id="home-runs" min="0"  /> 
+                <input type="number" class="batter-stats" placeholder="Runs Batted In" id="runs-batted-in" min="0"  /> 
+                <input type="number" class="batter-stats" placeholder="Runs Scored" id="runs-scored" min="0"  /> 
+            </div>
+            <div id="pitcher-stats" class="input-data" required>
+                <input type="number" class="pitcher-stats" placeholder="Innings Pitched" id="innings-pitched" min="0" />
+                <input type="number" class="pitcher-stats" placeholder="Runs Allowed" id="runs-allowed" min="0"  />
+                <input type="number" class="pitcher-stats" placeholder="Earned Runs" id="earned-runs" min="0"  />
+                <input type="number" class="pitcher-stats" placeholder="Hits Given Up" id="hits-given-up" min="0"  />
+                <input type="number" class="pitcher-stats" placeholder="Walks Issued" id="walks-issued" min="0"  />
+                <input type="number" class="pitcher-stats" placeholder="Wild Pitches" id="wild-pitches" min="0"  />
+                <input type="number" class="pitcher-stats" placeholder="Strikeouts" id="strikeouts" min="0"  />
+                <input type="number" class="pitcher-stats" placeholder="Home Runs Allowed" id="home-runs-allowed" min="0"  />
+                <input type="number" class="pitcher-stats" placeholder="Wins" id="wins" min="0"  />
+                <input type="number" class="pitcher-stats" placeholder="Losses" id="losses" min="0"  />
+            </div>
         </form>
         <div id="results-box">
             <h2 id="stat-header"></h2>

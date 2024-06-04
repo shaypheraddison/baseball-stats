@@ -32,14 +32,10 @@ h1 {
 .input-data {
     display: none;
     justify-content: center;
+    flex-direction: column;
     padding: 10px;
     align-items: stretch;
     margin: 0 auto;
-}
-
-#player-name {
-    margin-right: 5px;
-    width: 20%;
 }
 
 .input-box {
@@ -47,14 +43,10 @@ h1 {
     padding: 4px;
 }
 
-#batter-stats {
+#batter-stats, #pitcher-stats {
     display: none;
     flex-wrap: wrap;
-}
-
-#pitcher-stats {
-    display: none;
-    flex-wrap: wrap;
+    flex-direction: row;
 }
 
 #results-box { 
@@ -88,23 +80,34 @@ h1 {
 }
 
 .label {
-    font-size: 17px;
+    font-size: 19px;
     padding: 5px;
 }
 
 .stats {
-    font-size: 15px;
+    font-size: 17px;
 }
 
-@media screen and (max-width: 1200px) {
+#player-name {
+    margin-left: 40%;
+    width: 15%;
+    text-align: center;
+}
+
+
+
+@media screen and (min-width: 330px) and (max-width: 1200px) {
+    body {
+        background-size: stretch;
+    }
+
     .input-box::placeholder {
         font-size: 0.75em;
     }
-}
 
-@media screen and (min-width: 330px) and (max-width: 1199px) {
-    body {
-        background-size: stretch;
+    #player-name {
+        width: 30%;
+        margin-left: 30%;
     }
 
     #stat-container {
