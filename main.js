@@ -46,7 +46,8 @@ const inputElements = {
     miscStatLabels: document.getElementById("misc-stat-labels"),
     miscStats: document.getElementById("misc-stats"),
     nameContainer: document.querySelector(".input-data"),
-    mainForm: document.getElementById("main-form")
+    mainForm: document.getElementById("main-form"),
+    container: document.getElementById("stats-container")
 };
 
 const batterBackground = "Resources/HomePlate3x3.jpg";
@@ -226,6 +227,7 @@ function displayStats() {
             const hittingStats = hittingMath();
 
             // display's player name
+            inputElements.container.style.marginTop = "100px";
             inputElements.statHeader.style.display = "inline";
             inputElements.resultsBox.style.display = "grid";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
@@ -241,6 +243,7 @@ function displayStats() {
             const pitchingStats = pitchingMath();
 
             //display's player name
+            inputElements.container.style.marginTop = "100px";
             inputElements.statHeader.style.display = "inline";
             inputElements.resultsBox.style.display = "grid";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
