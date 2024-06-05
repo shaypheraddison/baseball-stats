@@ -1,0 +1,26 @@
+body {
+    background-image: url("Resources/baseball.jpeg");
+    font-family:Verdana;
+    transition: background-image 0.75s;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+#glossary-container {
+    background-color: rgba(245, 245, 245, 0.908);
+    border: 4px solid rgb(0, 0, 0);
+    margin: 0 auto;
+    width: 60%;
+    max-width: 900px;
+    /* height: 700px; */
+    margin-top: 100px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.277);
+    text-align: center;
+    padding: 20px;
+}
+
+#batting-stats-explained {
+    padding: 5px;
+}

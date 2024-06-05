@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="Glossary/glossary.js"></script>
+    <link rel="stylesheet" href="Glossary/glossary-styles.css">
+    <title>Stat Glossary</title>
+</head>
+<body>
+
+    <div id="glossary-container">
+        <h2>Glossary for Statistics</h2>
+        <p id="greeting">
+            Welcome to our comprehensive guide on batting statistics! 
+            Whether you're new to baseball or just curious about what each stat means, we've got you covered. 
+            Check out the explanations below to understand all the key statistics mentioned on the other page.
+        </p>
+        
+        <select name="player-type" id="player-dropdown">
+            <option value="">Choose Batter or Pitcher</option>
+            <option value="batter" id="batter">Batter</option>
+            <option value="pitcher" id="pitcher">Pitcher</option>
+        </select>
+
+        <h3>Batting Statistics</h3>
+        <div id="batting-stats-explained">
+            <p class="stat">AB - This stands for At-Bats. This measures how many times the batter comes to the plate and some kind of play happens.</p>
+            <p class="stat">BB - This stands for Base on Balls (AKA Walks). This measures how many times the batter gets walked to first base, this stat does include any walks that are intentional as well.</p>
+            <p class="stat">Fielder's Choice - This is when a batter hits the ball and reaches base because the fielder decided to throw the ball to another base.</p>
+            <p class="stat">H - This stands for Hits. This measures how many times a batter reaches safely on base from a ball hit into fair territory. This includes any singles, doubles, triples or home runs.</p>
+            <p class="stat">HBP - This stands for Hit-by-Pitch. This is when a batter gets hit by a pitch thrown by a pitcher. The batter is awarded a free trip to first base, if there is a runner already at first then that runner gets to advance to second base. If the batter swings and still gets hit by the pitch, the pitch is ruled a strike by the umpire and the play continues. </p>
+            <p class="stat">HR - This stands for Home Runs. This is when a batter gets a four-base hit, meaning they touched all three bases and home plate with one swing of the bat. This includes when the batter his the ball over the outfield fence, but it could also include when a batter hits an inside-the-park home run. If there are three runners at every base and the batter hits a home run, that is called a Grand Slam home run.</p>
+            <p class="stat">OBP - This stands for On-Base Percentage. This measures how often the batter gets on base. This can be by a hit, a walk, a hit-by-pitch or a sacrifice fly. Reaching on base from an error or a fielder's choice does not factor into the calculation for OBP.</p>
+            <p class="stat">OPS - This stands for On-Base Plus Slugging. This is measured by adding the On-Base Percentage and the Slugging Percentage together. This is used to measure the batters' overal offensive performance by most staticians.</p>
+            <p class="stat">R - This stands for Runs Scored. This is measures the amount of times the batter crosses home plate whle being on-base.</p>
+            <p class="stat">RBI - This stands for Runs Batted In. This is measured by how many runners cross home plate due to the batter getting a hit, a fielder's choice, a walk, a hit-by-pitch or even a sacrifice-fly out. Runners scoring from an error or a double play (and even triple play's) do not credit the batter with an RBI.</p>
+            <p class="stat">SF - This stands for Sacrifice Flies. This is a fly ball out that scores a runner.</p>
+            <p class="stat">SLG - This stands for Slugging Percentage. This is caclulated based off of how many total bases the batter gets from all of their hits divided by the amount of at-bats they have.</p>
+        </div>
+
+        <h3>Pitching Statistics</h3>
+        <div id="pitching-stats-explained">
+            <p class="stat">BB - This stands for Base on Balls (AKA Walks). This measures how many times the pitcher issues a walk to a batter by throwing 4 balls.</p>
+            <p class="stat">BB/9 - </p>
+            <p class="stat">ERA - </p>
+            <p class="stat">HA - This stands for Hits Allowed. This measures how many times a pitcher gives up a hit to the batter. This includes any singles, doubles, triples or home runs.</p>
+            <p class="stat">HR - This stands for Home Runs Allowed. This is when a pitcher gives up a home run to the batter.</p>
+            <p class="stat">H/9 - This stands for Hits Per 9 Innings. This is calculated based on how the total number of hits allowed divided by the amount of innings pitched by the pitcher. </p>
+            <p class="stat">HR/9 - This stands for Home Runs Per 9 Innings. This is calculated based on how the total number of home runs given up divided by the amount of innings pitched by the pitcher.</p>
+            <p class="stat">IP - </p>
+            <p class="stat">L - </p>
+            <p class="stat">RA - </p>
+            <p class="stat">SO - </p>
+            <p class="stat">SO/9 - This is calculated based on how the total number of strikeouts the pitcher has divided by the amount of innings pitched by the pitcher.</p>
+            <p class="stat">W - </p>
+            <p class="stat">WHIP - </p>
+        </div>
+
+
+    </div>
+    
+</body>
+</html>
