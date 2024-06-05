@@ -1,10 +1,14 @@
 body {
-    background-image: url("Resources/baseball.jpeg");
+    background-image: url("../Resources/baseball.jpeg");
     font-family:Verdana;
     transition: background-image 0.75s;
     background-size: cover;
     background-repeat: no-repeat;
 
+}
+
+h2 {
+    font-size: 35px;
 }
 
 #glossary-container {
@@ -13,14 +17,37 @@ body {
     margin: 0 auto;
     width: 60%;
     max-width: 900px;
-    /* height: 700px; */
-    margin-top: 100px;
+    margin-top: 200px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.277);
     text-align: center;
     padding: 20px;
 }
 
+#player-dropdown {
+    margin-top: 20px;
+    padding: 7px;
+}
+
+.definitions {
+    font-size: 17px;
+}
+
 #batting-stats-explained {
-    padding: 5px;
+    display: none;
+}
+
+#pitching-stats-explained {
+    display: none;
+}
+
+.definition-header {
+    font-size: 30px;
+    padding: 7px;
+    display: none;
+}
+
+span {
+    font-size: 20px;
+    font-weight: bold;
 }

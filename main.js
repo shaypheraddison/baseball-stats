@@ -227,6 +227,7 @@ function displayStats() {
 
             // display's player name
             inputElements.statHeader.style.display = "inline";
+            inputElements.resultsBox.style.display = "grid";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
 
             // display's hitting stat line and the labels
@@ -241,6 +242,7 @@ function displayStats() {
 
             //display's player name
             inputElements.statHeader.style.display = "inline";
+            inputElements.resultsBox.style.display = "grid";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
             
             //display's pitching stat line and the labels
