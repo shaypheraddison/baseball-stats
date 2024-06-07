@@ -54,10 +54,13 @@ span {
 #go-back {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 5px;
     color: black;
     text-decoration: none;
+    border: 2px solid black;
+    width: 10%;
 }
 
 #go-back:hover {
