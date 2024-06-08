@@ -59,14 +59,12 @@ function selectPlayer() {
     playerElements.playerChoice.addEventListener("change", function(event) {
         const playerValue = event.target.value;
 
-        // display only batting input elements if batter is selected on the dropdown
         if (playerValue=== "batter") {
             playerElements.batterStats.style.display = "inline-flex";
             playerElements.pitcherStats.style.display = "none";
             inputElements.nameContainer.style.display = "flex";
             document.body.style.backgroundImage = `url(${batterBackground})`;
 
-            // sets batting inputs as required and takes off required attributes for pitching inputs that are hidden
             for (let element in battingElements) {
                 if (battingElements[element]) {
                     battingElements[element].setAttribute("required", "true");
@@ -79,14 +77,12 @@ function selectPlayer() {
                 };
             };
         
-        // display only pitching input elements if pitcher is selected on the dropdown
         } else if (playerValue === "pitcher") {
             playerElements.pitcherStats.style.display = "inline-flex";
             playerElements.batterStats.style.display = "none";
             inputElements.nameContainer.style.display = "flex";
             document.body.style.backgroundImage = `url(${pitcherBackground})`;
 
-            // sets pitching inputs as required and takes off required attributes for batting inputs that are hidden
             for (let element in pitchingElements) {
                 if (pitchingElements[element]) {
                     pitchingElements[element].setAttribute("required", "true");
@@ -99,7 +95,6 @@ function selectPlayer() {
                 };
             };
 
-        // hide everything if the first option is selected on the dropdown
         } else {
             playerElements.pitcherStats.style.display = "none";
             playerElements.batterStats.style.display = "none";
@@ -175,18 +170,13 @@ function calcWalksHitsInningPitched(walksIssuedStat, inningsPitchedStat, hitsGiv
 function calcPer9Stats(strikeoutsStat, walksIssuedStat, hitsGivenUpStat, homeRunsAllowedStat,  inningsPitchedStat) {
     const innings = parseFloat(inningsPitchedStat);
     const stats = [strikeoutsStat, walksIssuedStat, hitsGivenUpStat, homeRunsAllowedStat];
-    // naming is based off later-used function for the math
     const finalStat = ["finalStatK", "finalStatBb", "finalStatHits", "finalStatHr"];
     const result = {};
 
-    // iterating over each Per 9 Stat
     for (let x = 0; x < stats.length; x++) {
-        // this is for doing the actual equation for the stat itself
         const per9Equation = ((parseFloat(stats[x]) * 9) / innings).toFixed(3);
-        // this is to append the object "result" with each value from the finalStat array as the key and the formatted stat from the equation above as the value
         result[`${finalStat[x]}`] = formatStat(per9Equation);
     };
-    // returning outside of the loop to return one full object to refer to later on
     return result;
 };
 
@@ -200,7 +190,6 @@ function pitchingMath() {
 function clearResults() {
     const removeText = [inputElements.statsBox, inputElements.statHeader, inputElements.statLabels, inputElements.miscStatLabels, inputElements.miscStats];
 
-    // this loops through each label and stat box and sets the text to nothing when swapping between different dropdown selections
     for (let label = 0; label < removeText.length; label++) {
         removeText[label].innerText = "";
     };
@@ -226,32 +215,26 @@ function displayStats() {
         if (player === "batter") {
             const hittingStats = hittingMath();
 
-            // display's player name
             inputElements.container.style.marginTop = "100px";
             inputElements.statHeader.style.display = "inline";
             inputElements.resultsBox.style.display = "grid";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
 
-            // display's hitting stat line and the labels
             inputElements.statLabels.innerText = "AVG  |  OBP  |  SLG  |  OPS  "
             inputElements.statsBox.innerText = `${hittingStats.battingAverage}  /  ${hittingStats.onBasePercentage}  /  ${hittingStats.slugging}  /  ${hittingStats.onBasePlusSlugging}`;
-            // display's other hitting stats and their labels
             inputElements.miscStatLabels.innerText = "AB  |  H  |  HR  |  R |  RBI  ";
             inputElements.miscStats.innerText = `${battingElements.atBats.value}  |  ${battingElements.hits.value}  |  ${battingElements.homeRuns.value}  |  ${battingElements.runsScored.value}  |  ${battingElements.runsBattedIn.value}`;
 
         } else if (player === "pitcher") {
             const pitchingStats = pitchingMath();
 
-            //display's player name
             inputElements.container.style.marginTop = "100px";
             inputElements.statHeader.style.display = "inline";
             inputElements.resultsBox.style.display = "grid";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
             
-            //display's pitching stat line and the labels
             inputElements.statLabels.innerText = "W  |  L  |  ERA  |  IP  |  HA  |  RA  |  ER  |  HR  |  BB  |  SO  ";
             inputElements.statsBox.innerText = `${pitchingElements.wins.value}  |  ${pitchingElements.losses.value}  |  ${pitchingStats.earnedRunsMath}  |  ${pitchingElements.inningsPitched.value}  |  ${pitchingElements.hitsGivenUp.value}  |  ${pitchingElements.runsAllowed.value}  |  ${pitchingElements.earnedRuns.value}  |  ${pitchingElements.homeRunsAllowed.value}  |  ${pitchingElements.walksIssued.value}  |  ${pitchingElements.strikeouts.value}  `;
-            //display's other pitching stats and the labels
             inputElements.miscStatLabels.innerText = "WHIP  |  H/9  |  HR/9  |  BB/9  |  SO/9  ";
             inputElements.miscStats.innerText = `${pitchingStats.walksHitsMath}  |  ${pitchingStats.statsPer9Math.finalStatHits}  |  ${pitchingStats.statsPer9Math.finalStatHr}  |  ${pitchingStats.statsPer9Math.finalStatBb}  |  ${pitchingStats.statsPer9Math.finalStatK}  `;
         };
