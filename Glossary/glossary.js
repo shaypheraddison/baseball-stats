@@ -10,19 +10,17 @@ const battingDef = document.getElementById("batting-stats-explained");
 const pitchingDef = document.getElementById("pitching-stats-explained");
 
 
-function displayDefinitions() {
+function main() {
     let option = "";
 
     dropdown.addEventListener("change", function(event) {
         option = event.target.value;
         if (option === "batter") {
-            container.style.marginTop = "100px";
             battingHeader.style.display = "block";
             battingDef.style.display = "block";
             pitchingHeader.style.display = "none";
             pitchingDef.style.display = "none";     
         } else if (option === "pitcher") {
-            container.style.marginTop = "100px";
             pitchingHeader.style.display = "block";
             pitchingDef.style.display = "block";
             battingHeader.style.display = "none";
@@ -36,4 +34,4 @@ function displayDefinitions() {
     });
 };
 
-displayDefinitions();
+main();

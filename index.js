@@ -41,7 +41,7 @@ const inputElements = {
     baseballStatsDisplay: document.getElementById("baseball-stats"),
     resultsBox: document.getElementById("results-box"),
     statsBox: document.getElementById("stats-go-here"),
-    statHeader: document.getElementById("stat-header"),
+    statHeader: document.querySelector("h2"),
     statLabels: document.getElementById("stat-labels"),
     miscStatLabels: document.getElementById("misc-stat-labels"),
     miscStats: document.getElementById("misc-stats"),
@@ -50,9 +50,9 @@ const inputElements = {
     container: document.getElementById("stats-container")
 };
 
-const batterBackground = "Resources/HomePlate3x3.jpg";
-const pitcherBackground = "Resources/mlb-mound.jpeg";
-const defaultBackground = "Resources/baseball.jpeg";
+const batterBackground = "Resources/HomePlate3x3.png";
+const pitcherBackground = "Resources/mlb-mound.png";
+const defaultBackground = "Resources/baseball.png";
 
 function selectPlayer() {
 
