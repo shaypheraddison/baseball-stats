@@ -12,8 +12,11 @@ h1 {
 }
 
 span {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
+    color: rgba(255, 0, 0, 0.658);
+    -webkit-text-fill-color: whitesmoke;
+    -webkit-text-stroke: 1px;
 }
 
 .definitions {
@@ -45,6 +48,10 @@ span {
     display: block;
     margin: 25px auto;
     padding: 7px;
+    color: whitesmoke;
+    background: rgba(255, 0, 0, 0.658);
+    border-radius: 5px;
+    border: none
 }
 
 #go-back {

@@ -10,7 +10,8 @@ const battingElements = {
     triples: document.getElementById("triples"),
     homeRuns: document.getElementById("home-runs"),
     runsBattedIn: document.getElementById("runs-batted-in"),
-    runsScored: document.getElementById("runs-scored")
+    runsScored: document.getElementById("runs-scored"),
+    stolenBases: document.getElementById("stolen-bases")
 };
 
 const pitchingElements = {
@@ -213,20 +214,18 @@ function displayStats() {
         if (player === "batter") {
             const hittingStats = hittingMath();
 
-            inputElements.container.style.marginTop = "100px";
             inputElements.statHeader.style.display = "inline";
             inputElements.resultsBox.style.display = "grid";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
 
             inputElements.statLabels.innerText = "AVG  |  OBP  |  SLG  |  OPS  "
             inputElements.statsBox.innerText = `${hittingStats.battingAverage}  /  ${hittingStats.onBasePercentage}  /  ${hittingStats.slugging}  /  ${hittingStats.onBasePlusSlugging}`;
-            inputElements.miscStatLabels.innerText = "AB  |  H  |  HR  |  R |  RBI  ";
-            inputElements.miscStats.innerText = `${battingElements.atBats.value}  |  ${battingElements.hits.value}  |  ${battingElements.homeRuns.value}  |  ${battingElements.runsScored.value}  |  ${battingElements.runsBattedIn.value}`;
+            inputElements.miscStatLabels.innerText = "AB  |  H  |  HR  |  R |  RBI  |  SB";
+            inputElements.miscStats.innerText = `${battingElements.atBats.value}  |  ${battingElements.hits.value}  |  ${battingElements.homeRuns.value}  |  ${battingElements.runsScored.value}  |  ${battingElements.runsBattedIn.value}  |  ${battingElements.stolenBases.value}`;
 
         } else if (player === "pitcher") {
             const pitchingStats = pitchingMath();
 
-            inputElements.container.style.marginTop = "100px";
             inputElements.statHeader.style.display = "inline";
             inputElements.resultsBox.style.display = "grid";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
