@@ -4,6 +4,8 @@ body {
     transition: background-image 0.75s;
     background-size: auto;
     background-repeat: no-repeat;
+    background-color: rgb(36, 35, 35);
+
 }
 
 h1 {
