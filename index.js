@@ -215,7 +215,7 @@ function displayStats() {
             const hittingStats = hittingMath();
 
             inputElements.statHeader.style.display = "inline";
-            inputElements.resultsBox.style.display = "grid";
+            inputElements.resultsBox.style.display = "flex";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
 
             inputElements.statLabels.innerText = "AVG  |  OBP  |  SLG  |  OPS  "
@@ -227,7 +227,7 @@ function displayStats() {
             const pitchingStats = pitchingMath();
 
             inputElements.statHeader.style.display = "inline";
-            inputElements.resultsBox.style.display = "grid";
+            inputElements.resultsBox.style.display = "flex";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
             
             inputElements.statLabels.innerText = "W  |  L  |  ERA  |  IP  |  HA  |  RA  |  ER  |  HR  |  BB  |  SO  ";
