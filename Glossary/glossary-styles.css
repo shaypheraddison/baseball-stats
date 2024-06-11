@@ -19,6 +19,20 @@ span {
     -webkit-text-stroke: 1px;
 }
 
+a {
+    display: flex;
+    margin: auto 0;
+    width: 12px;
+    margin-top: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color:rgba(255, 0, 0, 0.658);
+
+}
+
 .definitions {
     font-size: 17px;
     display: none;
@@ -51,20 +65,5 @@ span {
     color: whitesmoke;
     background: rgba(255, 0, 0, 0.658);
     border-radius: 5px;
-    border: none
-}
-
-#go-back {
-    display: flex;
-    justify-content: end;
-    margin: 0 auto;
-    margin-top: 30px;
-    margin-bottom: 5px;
-    color: white;
-    text-decoration: none;
-}
-
-#go-back:hover {
-    color:rgba(255, 0, 0, 0.658);
-
+    border: none;
 }
