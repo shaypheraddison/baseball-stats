@@ -30,8 +30,8 @@ const pitchingElements = {
 const playerElements = {
     playerChoice: document.getElementById("player-choice"),
     playerName: document.getElementById("player-name"),
-    batterStats: document.getElementById("batter-stats"),
-    pitcherStats: document.getElementById("pitcher-stats")
+    batterStats: document.getElementById("batter-stats-container"),
+    pitcherStats: document.getElementById("pitcher-stats-container")
 };
 
 const inputElements = {
@@ -44,7 +44,7 @@ const inputElements = {
     statLabels: document.getElementById("stat-labels"),
     miscStatLabels: document.getElementById("misc-stat-labels"),
     miscStats: document.getElementById("misc-stats"),
-    nameContainer: document.querySelector(".input-data"),
+    nameContainer: document.getElementById("name-section"),
     mainForm: document.getElementById("main-form"),
     container: document.getElementById("stats-container")
 };
@@ -59,38 +59,40 @@ function selectPlayer() {
         const playerValue = event.target.value;
 
         if (playerValue=== "batter") {
+            console.log(playerValue);
             playerElements.batterStats.style.display = "inline-flex";
             playerElements.pitcherStats.style.display = "none";
             inputElements.nameContainer.style.display = "flex";
             document.body.style.backgroundImage = `url(${batterBackground})`;
-
-            for (let element in battingElements) {
-                if (battingElements[element]) {
-                    battingElements[element].setAttribute("required", "true");
-                };
-            };
 
             for (let element in pitchingElements) {
                 if (pitchingElements[element]) {
                     pitchingElements[element].removeattribute = "required";
                 };
             };
+
+            for (let element in battingElements) {
+                if (battingElements[element]) {
+                    battingElements[element].setAttribute("required", "true");
+                };
+            };
         
         } else if (playerValue === "pitcher") {
+            console.log(playerValue);
             playerElements.pitcherStats.style.display = "inline-flex";
             playerElements.batterStats.style.display = "none";
             inputElements.nameContainer.style.display = "flex";
             document.body.style.backgroundImage = `url(${pitcherBackground})`;
 
-            for (let element in pitchingElements) {
-                if (pitchingElements[element]) {
-                    pitchingElements[element].setAttribute("required", "true");
-                };
-            };
-
             for (let element in battingElements) {
                 if (battingElements[element]) {
                     battingElements[element].removeattribute = "required";
+                };
+            };
+
+            for (let element in pitchingElements) {
+                if (pitchingElements[element]) {
+                    pitchingElements[element].setAttribute("required", "true");
                 };
             };
 
