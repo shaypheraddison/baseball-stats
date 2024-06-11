@@ -27,12 +27,32 @@ input {
     font-weight: bold;
 }
 
+a {
+    display: flex;
+    margin: 0 auto;
+    width: 110px;
+    margin-top: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color:rgba(255, 0, 0, 0.658);
+
+}
+
+p.stats, p.label {
+    text-align: center;
+    padding: 7px;
+    margin: 7px;
+}
+
 .input-data {
     display: none;
     justify-content: start;
     flex-direction: row;
     padding: 10px;
-    margin: 0 auto;
+    margin: 0 0 0 40px;
     flex-wrap: wrap;
 }
 
@@ -57,12 +77,16 @@ input {
 }
 
 #stats-container {
+    color: whitesmoke;
     margin: 0 auto;
     width: 60%;
+    height: 650px;
     max-width: 900px;
     margin-top: 200px;
-    border-radius: 15px;
-    color: whitesmoke;
+    padding: 20px;
+    /* overflow: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; */
 }
 
 #player-choice {
@@ -77,6 +101,7 @@ input {
 
 #results-box { 
     display: none;
+    flex-direction: column;
     justify-content: center;
     justify-items: center;
     text-wrap: wrap;
@@ -89,39 +114,96 @@ input {
     grid-column: 1 / 4;
 }
 
-#stat-labels, 
-#misc-stat-labels,
-#misc-stats {
-    text-align: center;
-    grid-column: 1 / 4;
-    padding: 7px;
-}
-
 #player-name {
     margin-left: 40%;
     width: 15%;
     text-align: center;
 }
 
-#glossary {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: white;
-    text-decoration: none;
+@media screen and (min-width: 300px) and (max-width: 390px) {
+    .input-data {
+        margin: 0 auto;
+        justify-content: center;
+    }
+    
+    #player-name {
+        width: 43%;
+        margin-left: 9%;
+    }
+
+    #stats-container {
+        color: whitesmoke;
+        margin: 0 auto;
+        width: 60%;
+        height: 650px;
+        max-width: 900px;
+        margin-top: 100px;
+        padding: 10px;
+        overflow: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
+    }
 }
 
-#glossary:hover {
-    color: rgba(255, 0, 0, 0.658);
+@media screen and (min-width: 391px) and (max-width: 606px) {
+    .input-data {
+        margin: 0 auto;
+        justify-content: center;
+    }
 
+    #player-name {
+        width: 30%;
+        margin-left: 22%;
+    }
+
+    #stats-container {
+        color: whitesmoke;
+        margin: 0 auto;
+        width: 60%;
+        height: 650px;
+        max-width: 900px;
+        margin-top: 100px;
+        padding: 10px;
+        overflow: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
+    }
+}
+
+@media screen and (min-width: 607px) and (max-width:715px) {
+    .input-data {
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    #player-name {
+        width: 30%;
+        margin-left: 22%;
+    }
+
+    #stats-container {
+        color: whitesmoke;
+        margin: 0 auto;
+        width: 60%;
+        height: 650px;
+        max-width: 900px;
+        margin-top: 100px;
+        padding: 10px;
+        overflow: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
+    }
 }
 
 
+@media screen and (min-width: 716px) and (max-width: 1200px) {
 
-@media screen and (min-width: 330px) and (max-width: 1200px) {
-    body {
-        background-size: stretch;
+    .input-data {
+        margin: 0 auto;
+        justify-content: center;
     }
 
     .input-box::placeholder {
@@ -130,11 +212,20 @@ input {
 
     #player-name {
         width: 30%;
-        margin-left: 30%;
+        margin-left: 20%;
     }
 
-    #stat-container {
-        height: auto;
-        padding: 4px;
+    #stats-container {
+        color: whitesmoke;
+        margin: 0 auto;
+        width: 60%;
+        height: 650px;
+        max-width: 900px;
+        margin-top: 100px;
+        padding: 10px;
+        overflow: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
     }
 }

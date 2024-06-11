@@ -24,7 +24,8 @@ const pitchingElements = {
     strikeouts: document.getElementById("strikeouts"),
     homeRunsAllowed: document.getElementById("home-runs-allowed"),
     wins: document.getElementById("wins"),
-    losses: document.getElementById("losses")
+    losses: document.getElementById("losses"),
+    strikeoutToWalkRatio: document.getElementById("strikeout-to-walk-ratio")
 };
 
 const playerElements = {
@@ -59,40 +60,38 @@ function selectPlayer() {
         const playerValue = event.target.value;
 
         if (playerValue=== "batter") {
-            console.log(playerValue);
             playerElements.batterStats.style.display = "inline-flex";
             playerElements.pitcherStats.style.display = "none";
             inputElements.nameContainer.style.display = "flex";
             document.body.style.backgroundImage = `url(${batterBackground})`;
-
-            for (let element in pitchingElements) {
-                if (pitchingElements[element]) {
-                    pitchingElements[element].removeattribute = "required";
-                };
-            };
 
             for (let element in battingElements) {
                 if (battingElements[element]) {
                     battingElements[element].setAttribute("required", "true");
                 };
             };
-        
-        } else if (playerValue === "pitcher") {
-            console.log(playerValue);
-            playerElements.pitcherStats.style.display = "inline-flex";
-            playerElements.batterStats.style.display = "none";
-            inputElements.nameContainer.style.display = "flex";
-            document.body.style.backgroundImage = `url(${pitcherBackground})`;
 
-            for (let element in battingElements) {
-                if (battingElements[element]) {
-                    battingElements[element].removeattribute = "required";
+            for (let element in pitchingElements) {
+                if (pitchingElements[element]) {
+                    pitchingElements[element].removeAttribute("required");
                 };
             };
+        
+        } else if (playerValue === "pitcher") {
+            playerElements.batterStats.style.display = "none";
+            playerElements.pitcherStats.style.display = "inline-flex";
+            inputElements.nameContainer.style.display = "flex";
+            document.body.style.backgroundImage = `url(${pitcherBackground})`;
 
             for (let element in pitchingElements) {
                 if (pitchingElements[element]) {
                     pitchingElements[element].setAttribute("required", "true");
+                };
+            };
+
+            for (let element in battingElements) {
+                if (battingElements[element]) {
+                    battingElements[element].removeAttribute("required");
                 };
             };
 
@@ -185,7 +184,8 @@ function pitchingMath() {
     const earnedRunsMath = calcEarnedRunAvg(pitchingElements.earnedRuns.value, pitchingElements.inningsPitched.value);
     const walksHitsMath = calcWalksHitsInningPitched(pitchingElements.walksIssued.value, pitchingElements.inningsPitched.value, pitchingElements.hitsGivenUp.value);
     const statsPer9Math = calcPer9Stats(pitchingElements.strikeouts.value, pitchingElements.walksIssued.value, pitchingElements.hitsGivenUp.value, pitchingElements.homeRunsAllowed.value, pitchingElements.inningsPitched.value);
-    return { earnedRunsMath, walksHitsMath, statsPer9Math }
+    const strikeoutToWalkMath = parseFloat(pitchingElements.strikeouts.value) / parseFloat(pitchingElements.walksIssued.value) 
+    return { earnedRunsMath, walksHitsMath, statsPer9Math, strikeoutToWalkMath }
 };
 
 function clearResults() {
@@ -203,6 +203,8 @@ function displayStats() {
         player = event.target.value;
         if (player === "") {
             clearResults();
+            inputElements.resultsBox.style.display = "none";
+            inputElements.container.style.marginTop = "200px";
         } else {
             clearResults();
         };
@@ -218,6 +220,7 @@ function displayStats() {
 
             inputElements.statHeader.style.display = "inline";
             inputElements.resultsBox.style.display = "flex";
+            inputElements.container.style.marginTop = "100px";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
 
             inputElements.statLabels.innerText = "AVG  |  OBP  |  SLG  |  OPS  "
@@ -230,12 +233,13 @@ function displayStats() {
 
             inputElements.statHeader.style.display = "inline";
             inputElements.resultsBox.style.display = "flex";
+            inputElements.container.style.marginTop = "100px";
             inputElements.statHeader.innerText = `${playerNameValue}'s Stat Line`;
             
             inputElements.statLabels.innerText = "W  |  L  |  ERA  |  IP  |  HA  |  RA  |  ER  |  HR  |  BB  |  SO  ";
             inputElements.statsBox.innerText = `${pitchingElements.wins.value}  |  ${pitchingElements.losses.value}  |  ${pitchingStats.earnedRunsMath}  |  ${pitchingElements.inningsPitched.value}  |  ${pitchingElements.hitsGivenUp.value}  |  ${pitchingElements.runsAllowed.value}  |  ${pitchingElements.earnedRuns.value}  |  ${pitchingElements.homeRunsAllowed.value}  |  ${pitchingElements.walksIssued.value}  |  ${pitchingElements.strikeouts.value}  `;
-            inputElements.miscStatLabels.innerText = "WHIP  |  H/9  |  HR/9  |  BB/9  |  SO/9  ";
-            inputElements.miscStats.innerText = `${pitchingStats.walksHitsMath}  |  ${pitchingStats.statsPer9Math.finalStatHits}  |  ${pitchingStats.statsPer9Math.finalStatHr}  |  ${pitchingStats.statsPer9Math.finalStatBb}  |  ${pitchingStats.statsPer9Math.finalStatK}  `;
+            inputElements.miscStatLabels.innerText = "WHIP  |  H/9  |  HR/9  |  BB/9  |  SO/9  |  K/BB  ";
+            inputElements.miscStats.innerText = `${pitchingStats.walksHitsMath}  |  ${pitchingStats.statsPer9Math.finalStatHits}  |  ${pitchingStats.statsPer9Math.finalStatHr}  |  ${pitchingStats.statsPer9Math.finalStatBb}  |  ${pitchingStats.statsPer9Math.finalStatK}  |  ${pitchingStats.strikeoutToWalkMath}`;
         };
     });
 };
