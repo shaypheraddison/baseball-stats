@@ -1,20 +1,11 @@
 body {
-    background-image: url("Resources/baseball.jpeg");
+    background-image: url("Resources/baseball.png");
     font-family:Verdana;
     transition: background-image 0.75s;
     background-size: auto;
     background-repeat: no-repeat;
-}
+    background-color: rgb(36, 35, 35);
 
-#stats-container {
-    background-color: rgba(245, 245, 245, 0.908);
-    border: 4px solid rgb(0, 0, 0);
-    margin: 0 auto;
-    width: 60%;
-    max-width: 900px;
-    margin-top: 200px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.277);
 }
 
 h1 {
@@ -22,60 +13,52 @@ h1 {
     font-size: 45px;
 }
 
-#player-choice {
-    display: block;
+h2 {
+    display: none;
+    justify-content: center;
+    text-align: center;
+    grid-column: 1 / 4;
+
+}
+
+input {
+    margin: 3px;
+    padding: 7px;
+    font-weight: bold;
+}
+
+a {
+    display: flex;
     margin: 0 auto;
-    padding: 3px;
+    width: 110px;
+    margin-top: 30px;
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color:rgba(255, 0, 0, 0.658);
+
+}
+
+p.stats, p.label {
+    text-align: center;
+    padding: 7px;
+    margin: 7px;
 }
 
 .input-data {
     display: none;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: start;
+    flex-direction: row;
     padding: 10px;
-    align-items: stretch;
-    margin: 0 auto;
+    margin: 0 0 0 40px;
+    flex-wrap: wrap;
 }
 
 .input-box {
     text-align: center;
     padding: 4px;
-}
-
-#batter-stats, #pitcher-stats {
-    display: none;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-
-#results-box { 
-    display: none;
-    justify-content: center;
-    justify-items: center;
-    text-wrap: wrap;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-#stat-header {
-    display: none;
-    justify-content: center;
-    text-align: center;
-    grid-column: 1 / 4;
-
-}
-
-#stats-go-here {
-    display: inline-block;
-    text-align: center;
-    grid-column: 1 / 4;
-}
-
-#stat-labels, 
-#misc-stat-labels,
-#misc-stats {
-    text-align: center;
-    grid-column: 1 / 4;
-    padding: 7px;
 }
 
 .label {
@@ -87,31 +70,140 @@ h1 {
     font-size: 18px;
 }
 
+#name-section {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    display: none;
+}
+
+#stats-container {
+    color: whitesmoke;
+    margin: 0 auto;
+    width: 60%;
+    height: 650px;
+    max-width: 900px;
+    margin-top: 200px;
+    padding: 20px;
+    /* overflow: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none; */
+}
+
+#player-choice {
+    display: block;
+    margin: 0 auto;
+    padding: 7px;
+    color: whitesmoke;
+    background: rgba(255, 0, 0, 0.658);
+    border-radius: 5px;
+    border: none
+}
+
+#results-box { 
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    text-wrap: wrap;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#stats-go-here {
+    display: inline-block;
+    text-align: center;
+    grid-column: 1 / 4;
+}
+
 #player-name {
     margin-left: 40%;
     width: 15%;
     text-align: center;
 }
 
-#glossary {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    color: black;
-    text-decoration: none;
+@media screen and (min-width: 300px) and (max-width: 390px) {
+    .input-data {
+        margin: 0 auto;
+        justify-content: center;
+    }
+    
+    #player-name {
+        width: 43%;
+        margin-left: 9%;
+    }
+
+    #stats-container {
+        color: whitesmoke;
+        margin: 0 auto;
+        width: 60%;
+        height: 650px;
+        max-width: 900px;
+        margin-top: 100px;
+        padding: 10px;
+        overflow: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
+    }
 }
 
-#glossary:hover {
-    color:rgba(0, 0, 0, 0.277);
+@media screen and (min-width: 391px) and (max-width: 606px) {
+    .input-data {
+        margin: 0 auto;
+        justify-content: center;
+    }
 
+    #player-name {
+        width: 30%;
+        margin-left: 22%;
+    }
+
+    #stats-container {
+        color: whitesmoke;
+        margin: 0 auto;
+        width: 60%;
+        height: 650px;
+        max-width: 900px;
+        margin-top: 100px;
+        padding: 10px;
+        overflow: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
+    }
+}
+
+@media screen and (min-width: 607px) and (max-width:715px) {
+    .input-data {
+        margin: 0 auto;
+        justify-content: center;
+    }
+
+    #player-name {
+        width: 30%;
+        margin-left: 22%;
+    }
+
+    #stats-container {
+        color: whitesmoke;
+        margin: 0 auto;
+        width: 60%;
+        height: 650px;
+        max-width: 900px;
+        margin-top: 100px;
+        padding: 10px;
+        overflow: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
+    }
 }
 
 
+@media screen and (min-width: 716px) and (max-width: 1200px) {
 
-@media screen and (min-width: 330px) and (max-width: 1200px) {
-    body {
-        background-size: stretch;
+    .input-data {
+        margin: 0 auto;
+        justify-content: center;
     }
 
     .input-box::placeholder {
@@ -120,11 +212,20 @@ h1 {
 
     #player-name {
         width: 30%;
-        margin-left: 30%;
+        margin-left: 20%;
     }
 
-    #stat-container {
-        height: auto;
-        padding: 4px;
+    #stats-container {
+        color: whitesmoke;
+        margin: 0 auto;
+        width: 60%;
+        height: 650px;
+        max-width: 900px;
+        margin-top: 100px;
+        padding: 10px;
+        overflow: auto;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+
     }
 }
